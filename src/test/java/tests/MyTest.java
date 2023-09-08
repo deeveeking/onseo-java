@@ -42,7 +42,7 @@ public class MyTest extends TestBase {
 
         assertThat(matchTimeAfter)
                 .as("New match time should be correct")
-                .isEqualTo(newExpectedMatchTime.plusHours(1));
+                .isEqualTo(newExpectedMatchTime);
     }
 
     @Test

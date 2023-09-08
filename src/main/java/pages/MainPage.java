@@ -20,7 +20,7 @@ public class MainPage extends BasePage<MainPage> {
     @FindBy(xpath = ".//div[@id='content-center']")
     private WebElement contentOnPage;
 
-    @FindBy(xpath = ".//div[@class='Iq Mq']")
+    @FindBy(xpath = ".//span[contains(@id,'status-or-time')]")
     private List<WebElement> upcomingMatches;
 
     @FindBy(xpath = ".//a[contains(@data-testid,'match-calendar')]")
@@ -61,12 +61,15 @@ public class MainPage extends BasePage<MainPage> {
                 matches = driver.getListElementsWhenVisibleAfterShortWait(upcomingMatches);
 
                 if (!matches.isEmpty()) {
-                    driver.clickWhenReadyAfterShortWait(matches.get(0));
-                    break;
+                    for (WebElement element : matches) {
+                        if (!element.getText().equals("FT")) {
+                            driver.clickWhenReadyAfterShortWait(element);
+                            return new MatchPage(driver).get();
+                        }
+                    }
                 }
             }
         }
-
         return new MatchPage(driver).get();
     }
 }
