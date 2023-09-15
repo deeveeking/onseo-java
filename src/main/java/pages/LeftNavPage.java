@@ -32,10 +32,4 @@ public class LeftNavPage extends BasePage<LeftNavPage> {
     public void load() {
         driver.waitForElementToBeDisplayedAfterShortWait(menuSection);
     }
-
-    public SettingsPage clickSettings() {
-        driver.clickWhenReadyAfterShortWait(settingsButton);
-
-        return new SettingsPage(driver).get();
-    }
 }

@@ -3,10 +3,12 @@ package pages.base;
 import driver.MyDriver;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import utils.WaitUtils;
 
 @Getter
 @Slf4j
@@ -32,5 +34,23 @@ public class BasePage <T extends LoadableComponent<T>> extends LoadableComponent
     @Override
     protected void isLoaded() throws Error {
         // implement not needed
+    }
+
+    public T waitLoaded(int timeToWait) {
+        long timeout = System.currentTimeMillis() + timeToWait * 1000L;
+        while (System.currentTimeMillis() < timeout) {
+            try {
+                isLoaded();
+
+                return (T) this;
+            } catch (TimeoutException timeoutException) {
+                // continue waiting
+            }
+        }
+        throw new TimeoutException(String.format("Page %s wasn't loaded.", getClass().getSimpleName()));
+    }
+
+    public T waitLoaded() {
+        return waitLoaded(WaitUtils.LONG_TIMEOUT);
     }
 }

@@ -3,6 +3,7 @@ package tests;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import base.TestBase;
+import enums.TimeZones;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 import pages.LeftNavPage;
@@ -20,7 +21,7 @@ public class MyTest extends TestBase {
 
     @Test
     public void changeTimeZoneTimeTest() {
-        String newTimeZone = "UTC +14:00";
+        String newTimeZone = TimeZones.UTC_PLUS_14.getValue();
         MainPage mainPage = new MainPage(driver).get();
 
         MatchPage matchPage = mainPage.openFirstUpcomingMatch();
@@ -47,7 +48,7 @@ public class MyTest extends TestBase {
 
     @Test
     public void changeTimeZoneDateTest() {
-        String newTimeZone = "UTC +14:00";
+        String newTimeZone = TimeZones.UTC_PLUS_14.getValue();
         MainPage mainPage = new MainPage(driver).get();
 
         MatchPage matchPage = mainPage.openFirstUpcomingMatch();

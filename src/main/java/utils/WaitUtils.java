@@ -13,7 +13,9 @@ import java.util.List;
 
 public interface WaitUtils extends WebDriver {
 
-    int SHORT_TIMEOUT = 15;
+    int SHORT_TIMEOUT = 10;
+    int MIDDLE_TIMEOUT = 15;
+    int LONG_TIMEOUT = 20;
 
     default WebElement waitForElementToBeDisplayed(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(this, Duration.ofSeconds(timeout));

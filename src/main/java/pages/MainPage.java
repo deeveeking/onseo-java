@@ -70,6 +70,6 @@ public class MainPage extends BasePage<MainPage> {
                 }
             }
         }
-        return new MatchPage(driver).get();
+        return new MatchPage(driver).waitLoaded();
     }
 }
